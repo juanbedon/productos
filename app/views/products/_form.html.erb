@@ -22,26 +22,10 @@
           <%= f.number_field :price, class: 'form-control input-lg', placeholder: "Precio del producto" %>
         </div>
 
-        <div class="form-group">
-          <%= check_box_tag(:perfumes) %>
-          <%= label_tag(:perfumes, "Perfumes") %>
-          <%= check_box_tag(:libros) %>
-          <%= label_tag(:libros, "Libros") %>
-          <%= check_box_tag(:tecnologia) %>
-          <%= label_tag(:tecnologia, "Tecnología") %>
-          <%= check_box_tag(:electrodomesticos) %>
-          <%= label_tag(:electrodomesticos, "Electrodomésticos") %>
-          <%= check_box_tag(:aseo) %>
-          <%= label_tag(:aseo, "Aseo") %>
-          <%= check_box_tag(:juguetes) %>
-          <%= label_tag(:juguetes, "Juguetes") %>
-          <%= check_box_tag(:ropa) %>
-          <%= label_tag(:ropa, "Ropa") %>
-          <%= check_box_tag(:oficina) %>
-          <%= label_tag(:oficina, "Oficina") %>
-          <%= check_box_tag(:mascotas) %>
-          <%= label_tag(:mascotas, "Mascotas") %>
-        </div>
+        <% Category.all.each do |category| %>
+        <% #byebug %>
+          <p><%= category.name %> <%= check_box_tag "product[category_ids][]", category.id, @product.categories.pluck(:id).include?(category.id)  %></p><br>
+        <% end %>
 
         <div class="actions text-right">
           <%= f.submit @product.new_record? ? "Crear Producto" : "Editar Producto", class: "btn btn-primary btn-lg btn-block" %>
