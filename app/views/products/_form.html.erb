@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1><%= @product.new_record? ? "Publicar": "Editar" %> Producto</h1>
+
+      <% if @product.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_for @product do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control input-lg', placeholder: "Nombre del producto" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.number_field :price, class: 'form-control input-lg', placeholder: "Precio del producto" %>
+        </div>
+
+        <div class="form-group">
+          <%= check_box_tag(:perfumes) %>
+          <%= label_tag(:perfumes, "Perfumes") %>
+          <%= check_box_tag(:libros) %>
+          <%= label_tag(:libros, "Libros") %>
+          <%= check_box_tag(:tecnologia) %>
+          <%= label_tag(:tecnologia, "Tecnología") %>
+          <%= check_box_tag(:electrodomesticos) %>
+          <%= label_tag(:electrodomesticos, "Electrodomésticos") %>
+          <%= check_box_tag(:aseo) %>
+          <%= label_tag(:aseo, "Aseo") %>
+          <%= check_box_tag(:juguetes) %>
+          <%= label_tag(:juguetes, "Juguetes") %>
+          <%= check_box_tag(:ropa) %>
+          <%= label_tag(:ropa, "Ropa") %>
+          <%= check_box_tag(:oficina) %>
+          <%= label_tag(:oficina, "Oficina") %>
+          <%= check_box_tag(:mascotas) %>
+          <%= label_tag(:mascotas, "Mascotas") %>
+        </div>
+
+        <div class="actions text-right">
+          <%= f.submit @product.new_record? ? "Crear Producto" : "Editar Producto", class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

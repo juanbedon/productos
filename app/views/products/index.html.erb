@@ -1,0 +1,27 @@
+<div>
+	<a href=<%= new_product_path %>>Nuevo Producto</a>
+</div>
+
+<div>
+  <table class="table" id="transactions">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Categorías</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td>
+          <td><%= product.categories.name %></td>
+          <td><%= link_to 'Editar', edit_product_path(product) %></td>
+          <td><%= link_to 'Eliminar', product_path(product), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
